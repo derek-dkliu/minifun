@@ -1,27 +1,17 @@
-# Minifun
+# MINIFUN
+This project is composed of several subprojects which were implemented because of my passion in AI, Alogrithms and Data structures 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.2.
+## Live Demo
+Try it: [https://minifun.herokuapp.com](https://minifun.herokuapp.com)
 
-## Development server
+## Tic Tac Toe & General AI Players
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This project implements a general AI players with MiniMax(Alpah-beta pruning), MonteCarlo and Monte Carlo Tree Search. The Tic Tac Toe game serves as a simple example for the purpose of testing different players using the above methods. Other board games will be released to show the power of such general AI players in the future.
 
-## Code scaffolding
+## Maze generation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This project implements a maze game with 3 maze generation algorithms, i.e. Growing tree, Prims and Back tracking.
 
-## Build
+## Hanoi Tower
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+This project imeplments the classic mathematical game with animated recursive solution.
