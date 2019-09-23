@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { MazeFactory, MAZE_OPTIIONS } from './maze-factory';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LevelDialogComponent } from '../level-dialog/level-dialog.component';
 
 interface Player {
@@ -43,8 +43,9 @@ export class MazeComponent implements OnInit {
   private player: Player;
   private key = { ArrowLeft: false, ArrowRight: false, ArrowDown: false, ArrowUp: false };
   private requestID: number;
+  private dialogRef: MatDialogRef<LevelDialogComponent>;
   public isGameOver = false;
-  public level = 10;
+  public level = 1;
   public maxLevel = 10;
   public mazeChoice = 0;
   public mazeOptions = MAZE_OPTIIONS;
@@ -52,7 +53,9 @@ export class MazeComponent implements OnInit {
   @ViewChild('canvas', { static: true })
   private canvasRef: ElementRef;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(
+    private dialog: MatDialog,
+  ) { }
 
   ngOnInit() {
     this.setupGame();
@@ -197,7 +200,7 @@ export class MazeComponent implements OnInit {
   }
 
   private openDialog() {
-    const dialogRef = this.dialog.open(LevelDialogComponent, {
+    this.dialogRef = this.dialog.open(LevelDialogComponent, {
       disableClose: true,
       minWidth: '300px',
       data: {
@@ -206,7 +209,7 @@ export class MazeComponent implements OnInit {
         hasNextLevel: this.level !== this.maxLevel,
       }
     });
-    dialogRef.afterClosed().subscribe(params => {
+    this.dialogRef.afterClosed().subscribe(params => {
       if (params.next) {
         this.nextLevel();
       } else {
@@ -215,14 +218,27 @@ export class MazeComponent implements OnInit {
     });
   }
 
+  onArrowKey(arrow: string) {
+    this.key[arrow] = true;
+    this.doMove();
+    this.key[arrow] = false;
+  }
+
+  @HostListener('contextmenu', ['$event'])
+  onContextMenu() {
+    return false;
+  }
+
   @HostListener('window:keydown', ['$event'])
   onKeydown(event: KeyboardEvent) {
     event.preventDefault();
     if (this.isGameOver) {
       if (event.key === 'ArrowRight') {
-        this.nextLevel();
+        // this.nextLevel();
+        this.dialogRef.close({next: true});
       } else if (event.key === 'ArrowLeft') {
-        this.restart();
+        // this.restart();
+        this.dialogRef.close({next: false});
       }
 
     } else if (event.key === 'Enter') {
@@ -234,9 +250,7 @@ export class MazeComponent implements OnInit {
       if (event.ctrlKey) {
         this.key[event.key] = true;
       } else {
-        this.key[event.key] = true;
-        this.doMove();
-        this.key[event.key] = false;
+        this.onArrowKey(event.key);
       }
     }
   }

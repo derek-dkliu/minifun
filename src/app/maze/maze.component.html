@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="control-pane">
+  <div class="option-pane">
     <div class="level-choice">
       <mat-form-field>
         <input matInput type="number" step="1" tabindex="1" placeholder="Level"
@@ -16,6 +16,15 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+    </div>
+  </div>
+
+  <div class="control-pane">
+    <div class="keys">
+      <div class="arrow up" (click)="onArrowKey('ArrowUp')"><mat-icon>arrow_upward</mat-icon></div>
+      <div class="arrow left" (click)="onArrowKey('ArrowLeft')"><mat-icon>arrow_back</mat-icon></div>
+      <div class="arrow down" (click)="onArrowKey('ArrowDown')"><mat-icon>arrow_downward</mat-icon></div>
+      <div class="arrow right" (click)="onArrowKey('ArrowRight')"><mat-icon>arrow_forward</mat-icon></div>
     </div>
   </div>
 
