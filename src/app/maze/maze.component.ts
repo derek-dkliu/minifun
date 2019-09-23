@@ -224,7 +224,7 @@ export class MazeComponent implements OnInit {
     this.key[arrow] = false;
   }
 
-  @HostListener('contextmenu', ['$event'])
+  @HostListener('contextmenu', [])
   onContextMenu() {
     return false;
   }

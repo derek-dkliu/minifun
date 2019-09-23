@@ -41,6 +41,10 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    &:hover {
+      opacity: 1;
+      color: cyan;
+    }
   }
   .up {
     left: 60px;
