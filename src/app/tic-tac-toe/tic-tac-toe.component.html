@@ -1,0 +1,65 @@
+<div class="container">
+  <section *ngIf="!debug">
+    <!--div class="banner" [class.visible]="isGameOver()">
+      <div *ngIf="hasWinner()">{{winner}} Won</div>
+      <div *ngIf="!hasWinner()">{{winner | uppercase}}</div>
+      <div class="reset">
+        <mat-icon class="icon" aria-label="reset" (click)="resetGame()" title="Restart">refresh</mat-icon>
+      </div>
+    </div-->
+
+    <div class="board">
+      <mat-grid-list cols="3">
+        <mat-grid-tile class="cell" [style.color]="cell.color"
+          *ngFor="let cell of board.getCells(); let i=index" (click)="handleClick(i)">
+          <div class="mark">
+            {{cell.mark}}
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </section>
+
+  <section>
+    <div class="control-pane">
+      <div class="controls">
+        <button mat-icon-button *ngFor="let name of getRoleNames()" (click)="setRole(name)" title="Play as {{name}}">
+          <div [class.active]="isRole(name)">{{name}}</div>
+        </button>
+        <button mat-icon-button (click)="set2P()" title="Two players">
+          <mat-icon class="icon" aria-label="two players"
+            [class.active]="huamRoles.length === 2">people</mat-icon>
+        </button>
+        <button mat-icon-button (click)="setTest()" title="View auto play">
+          <mat-icon class="icon" aria-label="test"
+            [class.active]="isTestMode()">computer</mat-icon>
+        </button>
+        <button mat-icon-button (click)="toggleDebug()" *ngIf="false && isTestMode()">
+          <mat-icon class="icon" aria-label="toggle debug"
+            [class.active]="debug">bug_report</mat-icon>
+        </button>
+      </div>
+      <div class="player-choice" *ngIf="isTestMode()">
+        <mat-form-field *ngFor="let computerRole of this.computerRoles; let i=index">
+          <mat-select [(value)]="playerChoice[i]">
+            <mat-option *ngFor="let option of this.playerOption" [value]="option.id">
+              {{option.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-icon-button (click)="runTest()" [disabled]="testing">
+          <mat-icon class="icon" color="accent" aria-label="run">play_arrow</mat-icon>
+        </button>
+      </div>
+      <div class="test-report" *ngIf="debug">
+        <div>X: <span>{{report.X}}</span></div>
+        <div>O: <span>{{report.O}}</span></div>
+        <div>Tie: <span>{{report.Tie}}</span></div>
+        <div>
+          (<span>{{report.loop}}</span>/ {{testLoop}},
+           in<span>{{report.time}}</span>s )
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

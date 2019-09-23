@@ -1,6 +1,6 @@
 <mat-grid-list [cols]="cols" [rowHeight]="rowHeight">
   <mat-grid-tile *ngFor="let item of items">
-    <mat-card (click)="item.route">
+    <mat-card [routerLink]="item.route" routerLinkActive="active">
       <mat-card-header>
         <mat-card-title>{{item.name}}</mat-card-title>
       </mat-card-header>

@@ -39,9 +39,9 @@ export class GaleryComponent implements OnInit, OnDestroy {
     });
 
     this.items = [
-      { name: 'Tic Tac Toe', image: '../../assets/tictactoe.png', route: ''},
-      { name: 'Maze', image: '../../assets/maze.png', route: ''},
-      { name: 'Hanoi Tower', image: '../../assets/hanoi-tower.png', route: ''},
+      { name: 'Tic Tac Toe', route: '/tic-tac-toe', image: '../../assets/tic-tac-toe.png'},
+      { name: 'Maze', route: '/maze', image: '../../assets/maze.png'},
+      { name: 'Hanoi Tower', route: '/hanoi-tower', image: '../../assets/hanoi-tower.png'},
     ];
   }
 

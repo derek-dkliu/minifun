@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="menu">moves <strong>{{moveCount}}</strong></div>
+  <div class="menu">
+    <div *ngIf="!inputMode">Level {{diskNum}}</div>
+    <input matInput *ngIf="inputMode" type="number" step="1" tabindex="1"
+      [min]="1" [max]="maxDiskNum" [(ngModel)]="diskNum" (input)="diskNumChanged($event.target.value)">
+  </div>
+  <div class="menu">
+    <div class="controls">
+      <div class="restart" (click)="restart()" title="restart">
+        <mat-icon aria-label="restart" color="accent">refresh</mat-icon>
+      </div>
+      <div class="hint" (click)="switchHint()" title="{{hintOn ? 'Show hint' : 'Hide hint'}}">
+        <mat-icon aria-label="hint">{{hintOn ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-towers [diskNum]="diskNum" [labels]="labels"
+  (moved)="addMoveCount($event)"
+  (done)="openDialog()"></app-towers>
+
+<div class="container" *ngIf="hintOn">
+  <mat-list class="hints">
+    <div class="hint-head">
+      <h3 mat-subheader>Answer</h3>
+      <div class="step" (click)="run()" [ngClass]="autoRunning ? 'inactive' : 'active'"><mat-icon>play_arrow</mat-icon></div>
+      <div class="step" (click)="step()" [ngClass]="autoRunning ? 'inactive' : 'active'"><mat-icon>skip_next</mat-icon></div>
+    </div>
+    <mat-list-item *ngFor="let move of moves; let i = index" [class.active-step]="i === moveCount">
+      {{i + 1}}. move from {{move.from}} to {{move.to}}
+    </mat-list-item>
+  </mat-list>
+</div>

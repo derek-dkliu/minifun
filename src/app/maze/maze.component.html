@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="control-pane">
+    <div class="level-choice">
+      <mat-form-field>
+        <input matInput type="number" step="1" tabindex="1" placeholder="Level"
+          [min]="1" [max]="maxLevel" [(ngModel)]="level" (input)="levelChanged($event.target.value)">
+      </mat-form-field>
+    </div>
+
+    <div class="algo-choice">
+      <mat-form-field>
+        <mat-select placeholder="Algorithm"
+          [value]="mazeChoice" (selectionChange)="alogChanged($event.value)">
+          <mat-option *ngFor="let maze of mazeOptions" [value]="maze.id">
+            {{maze.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <canvas #canvas></canvas>
+
+  <!--div class="banner" [class.visible]="isGameOver">
+    <div>Well done!</div>
+    <div class="options">
+      <mat-icon class="icon reset" aria-label="reset" (click)="restart()" title="Try one more">refresh</mat-icon>
+      <mat-icon class="icon next" aria-label="next level" (click)="nextLevel()" title="Next level">arrow_forward</mat-icon>
+    </div>
+  </div-->
+</div>

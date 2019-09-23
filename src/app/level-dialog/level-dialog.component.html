@@ -1,0 +1,20 @@
+<div class="congrat">
+  <p>
+    <strong>{{params.message}}</strong>
+  </p>
+  <div *ngIf="params.excellent" class="master">
+    <div>Excellent!</div>
+    <mat-icon aria-label="excellent">thumb_up</mat-icon>
+  </div>
+</div>
+
+<mat-dialog-actions [attr.align]="'end'">
+  <button mat-button (click)="tryAgain()">
+    <mat-icon aria-label="try again">refresh</mat-icon>
+    Try again
+  </button>
+  <button mat-button color="primary" cdkFocusInitial (click)="nextLevel()" *ngIf="params.hasNextLevel">
+    <mat-icon aria-label="next level" >arrow_forward</mat-icon>
+    Next level
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,15 @@
+<div cdkDropListGroup class="container">
+  <div class="tower" [id]="item.key"
+      *ngFor="let item of dataMap | keyvalue"
+      cdkDropList
+      [cdkDropListData]="item.value"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListEnterPredicate]="isDroppable">
+    <app-disk cdkDrag *ngFor="let data of item.value" [cdkDragData]="data" [cdkDragDisabled]="!data.draggable">
+    </app-disk>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tower-label" *ngFor="let label of labels">{{label}}</div>
+</div>
