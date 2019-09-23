@@ -1,1 +1,18 @@
-<router-outlet></router-outlet>
+<mat-toolbar color="primary" class="toolbar">
+  <button class="title"
+    mat-icon-button
+    aria-label="main page"
+    routerLink="/" routerLinkActive="active">
+    <mat-icon>videogame_asset</mat-icon>
+    {{title | uppercase}}
+  </button>
+  <span class="spacer"></span>
+  <div class="author">
+    Created by
+    <a href='https://github.com/derek-dkliu/minifun' target="_blank">Derek Liu</a>
+  </div>
+</mat-toolbar>
+
+<div class="main-panel">
+  <router-outlet></router-outlet>
+</div>

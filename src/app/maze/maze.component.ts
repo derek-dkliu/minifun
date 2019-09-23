@@ -44,7 +44,7 @@ export class MazeComponent implements OnInit {
   private key = { ArrowLeft: false, ArrowRight: false, ArrowDown: false, ArrowUp: false };
   private requestID: number;
   public isGameOver = false;
-  public level = 1;
+  public level = 10;
   public maxLevel = 10;
   public mazeChoice = 0;
   public mazeOptions = MAZE_OPTIIONS;
